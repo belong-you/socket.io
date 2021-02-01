@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/3.0.0-rc4/socket.io.min.js"></script>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <script>
+        const socket = io.connect(/* 连接地址 */);   // 建立连接
+        const btn = document.getElementById('btn');
+
+        socket.on('client', data => {
+            console.log(data)
+        })
+
+        btn.onclick = () => {
+            socket.emit('serve', 'Messages sent by the client!');
+
+            const newSocket = io.connect();  // 想发送消息需要建立新的连接
+            newSocket.on('client', chunk => {
+                console.log(chunk);
+            })
+
+        }
+        
+        // 服务器断开连接
+        socket.on('disconnect', scoket => {
+            console.log('server disconnect');
+        })
+    </script>
+</body>
+</html>
