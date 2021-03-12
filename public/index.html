@@ -8,7 +8,9 @@
 </head>
 <body>
     <button id="btn">点击</button>
-    <script>
+    <button id='close'>断开</button>
+    <script src="./socket.js"></script>
+    <!-- <script>
         const socket = io.connect(/* 连接地址 */);   // 建立连接
         const btn = document.getElementById('btn');
 
@@ -30,6 +32,6 @@
         socket.on('disconnect', scoket => {
             console.log('server disconnect');
         })
-    </script>
+    </script> -->
 </body>
 </html>

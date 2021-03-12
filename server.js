@@ -12,6 +12,9 @@ const io = socketIO(server);
 
 // 建立连接
 io.on('connection', socket => {
+    // console.log(socket.handshake)  // 客户端传递信息，参数
+    // console.log(socket.connected)  // 是否连接
+    // console.log(socket.disconnected);  // 是否断开
     console.log('client connected');
 
     socket.emit('test', 'hhhhhhhhh')
@@ -23,6 +26,10 @@ io.on('connection', socket => {
     // 监听自定义事件
     socket.on('serve', chunk => {
         console.log(chunk);
+    })
+
+    socket.on('compress', data => {
+        console.log(data)
     })
 
     // 客户端断开连接
